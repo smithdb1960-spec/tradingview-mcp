@@ -319,7 +319,7 @@ export async function launch({ port, kill_existing, _deps } = {}) {
     // for normal `dir` enumeration but readable via Get-AppxPackage without elevation.
     try {
       const ps = 'powershell -NoProfile -Command "(Get-AppxPackage -Name \'TradingView.Desktop\' -ErrorAction SilentlyContinue).InstallLocation"';
-      const installDir = deps.execSync(ps, { timeout: 5000 }).toString().trim();
+      const installDir = deps.execSync(ps, { timeout: 20000 }).toString().trim();
       if (installDir) {
         const candidate = `${installDir}\\TradingView.exe`;
         if (deps.existsSync(candidate)) tvPath = candidate;
